@@ -4,7 +4,7 @@ const crypto = require("crypto")
 
 // Export config object
 module.exports = {
-  uri: "mongodb://localhost:27017/" + this.db, // Databse URI and database name
+  uri: "mongodb://localhost:27017/mean-angular-2", // Databse URI and database name
   secret: crypto, // Cryto-created secret
   db: "mean-angular-2" // Database name
 };

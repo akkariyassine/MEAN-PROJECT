@@ -182,6 +182,7 @@ module.exports = router => {
   /* ================================================
   MIDDLEWARE - Used to grab user's token from headers
   ================================================ */
+
   router.use((req, res, next) => {
     const token = req.headers["authorization"]; // Create token found in headers
     // Check if token was found in headers
@@ -205,6 +206,8 @@ module.exports = router => {
      Route to get user's profile data
   =============================================================== */
   router.get("/profile", (req, res) => {
+    console.log(req);
+
     // Search for user in database
     User.findOne({ _id: req.decoded.userId })
       .select("username email")

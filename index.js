@@ -10,6 +10,7 @@ const bodyParser = require("body-parser"); // Parse incoming request bodies in a
 const path = require("path"); // NodeJS Package for file paths
 const authentication = require("./routes/authentication")(router); // Import Authentication Routes
 const cors = require("cors"); // CORS is a node.js package for providing a Connect/Express middleware that can be used to enable CORS with various options.
+const blog = require("./routes/blog")(router); // Import Blog Routes
 
 // Database Connection
 mongoose.Promise = global.Promise;
@@ -27,6 +28,7 @@ app.use(bodyParser.json()); // parse application/json
 // Provide static directory for frontend
 app.use(express.static(__dirname + "/client/dist/client/"));
 app.use("/authentication", authentication);
+app.use("/blog", blog); // Use Blog routes in application
 
 // Connect server to Angular 2 Index.html
 app.get("*", (req, res) => {

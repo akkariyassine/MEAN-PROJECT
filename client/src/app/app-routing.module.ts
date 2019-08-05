@@ -5,30 +5,41 @@ import { DashboardComponent } from "./components/dashboard/dashboard.component";
 import { RegisterComponent } from "./components/register/register.component";
 import { LoginComponent } from "./components/login/login.component";
 import { ProfileComponent } from "./components/profile/profile.component";
+import { AuthGuard } from "./guards/auth.guard";
+import { NotAuthGuard } from "./guards/notAuth.guard";
+import { BlogComponent } from "./components/blog/blog.component";
 
-// Our Array of Angular 2 Routes
 const appRoutes: Routes = [
   {
     path: "",
-    component: HomeComponent // The Default Route
+    component: HomeComponent // Default Route
   },
   {
     path: "dashboard",
-    component: DashboardComponent // The Dashboard Route
+    component: DashboardComponent, // Dashboard Route,
+    canActivate: [AuthGuard] // User must be logged in to view this route
+  },
+  {
+    path: "blog",
+    component: BlogComponent, // Dashboard Route,
+    canActivate: [AuthGuard] // User must be logged in to view this route
   },
   {
     path: "register",
-    component: RegisterComponent // The Register Route
+    component: RegisterComponent, // Register Route
+    canActivate: [NotAuthGuard] // User must NOT be logged in to view this route
   },
   {
     path: "login",
-    component: LoginComponent // The Default Route
+    component: LoginComponent, // Login Route
+    canActivate: [NotAuthGuard] // User must NOT be logged in to view this route
   },
   {
     path: "profile",
-    component: ProfileComponent // The Default Route
+    component: ProfileComponent, // Profile Route
+    canActivate: [AuthGuard] // User must be logged in to view this route
   },
-  { path: "**", component: HomeComponent } // The "Catch-All" Route
+  { path: "**", component: HomeComponent } // "Catch-All" Route
 ];
 
 @NgModule({

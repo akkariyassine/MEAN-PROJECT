@@ -7,6 +7,7 @@ import {
 } from "@angular/forms";
 import { AuthService } from "../../services/auth.service.service";
 import { Router } from "@angular/router";
+import { AuthGuard } from "../../guards/auth.guard";
 
 @Component({
   selector: "app-login",
@@ -18,11 +19,13 @@ export class LoginComponent implements OnInit {
   message;
   processing = false;
   form: FormGroup;
+  previousUrl: any;
 
   constructor(
     private formBuilder: FormBuilder,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    public authGuard: AuthGuard
   ) {
     this.createForm(); // Create Login Form when component is constructed
   }
@@ -80,5 +83,13 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    // On page load, check if user was redirected to login
+    if (this.authGuard.redirectUrl) {
+      this.messageClass = "alert alert-danger"; // Set error message: need to login
+      this.message = "You must be logged in to view that page."; // Set message
+      this.previousUrl = this.authGuard.redirectUrl; // Set the previous URL user was redirected from
+      this.authGuard.redirectUrl = undefined; // Erase previous URL
+    }
+  }
 }

@@ -14,8 +14,11 @@ import { AuthService } from "./services/auth.service.service";
 import { LoginComponent } from "./components/login/login.component";
 import { FlashMessagesModule } from "angular2-flash-messages";
 import { JwtModule } from "@auth0/angular-jwt";
-import { ProfileComponent } from './components/profile/profile.component';
-
+import { ProfileComponent } from "./components/profile/profile.component";
+import { AuthGuard } from "./guards/auth.guard";
+import { NotAuthGuard } from "./guards/notAuth.guard";
+import { BlogComponent } from "./components/blog/blog.component";
+import { BlogService } from "../app/services/blog.service";
 export function tokenGetter() {
   return localStorage.getItem("token");
 }
@@ -28,7 +31,8 @@ export function tokenGetter() {
     DashboardComponent,
     RegisterComponent,
     LoginComponent,
-    ProfileComponent
+    ProfileComponent,
+    BlogComponent
   ],
   imports: [
     BrowserModule,
@@ -42,7 +46,7 @@ export function tokenGetter() {
       }
     })
   ],
-  providers: [AuthService],
+  providers: [AuthService, BlogService, AuthGuard, NotAuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

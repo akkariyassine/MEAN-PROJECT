@@ -10,6 +10,7 @@
           "style": "scss"
         }
       },
+
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",
@@ -25,11 +26,12 @@
             "aot": false,
             "assets": ["src/favicon.ico", "src/assets"],
             "styles": [
-              "node_modules/bootstrap/dist/css/bootstrap.css",
-              "src/styles.scss"
+              "src/styles.scss",
+              "node_modules/bootstrap/dist/css/bootstrap.css"
             ],
             "scripts": ["node_modules/jquery/dist/jquery.min.js"]
           },
+
           "configurations": {
             "production": {
               "fileReplacements": [

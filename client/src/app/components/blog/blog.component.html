@@ -87,6 +87,7 @@
       </ul>
     </div>
   </div>
+
   <!-- Body Input -->
   <div class="form-group">
     <label for="body">Body</label>
@@ -196,12 +197,15 @@
       <div class="dropdown">
         <!-- Like Button -->
         <button
+          [disabled]="blog.likedBy.indexOf(username) > -1"
           type="button"
           name="button"
           class="btn btn-sm btn-success"
           *ngIf="username !== blog.createdBy"
+          (click)="likeBlog(blog._id)"
         >
-          <span class="glyphicon glyphicon-thumbs-up">&nbsp;</span>Likes: 21
+          <span class="glyphicon glyphicon-thumbs-up">&nbsp;</span>Likes:
+          {{ blog.likes }}
         </button>
         <!-- Dropdown Menu Items -->
       </div>
@@ -210,13 +214,15 @@
       <div class="dropdown">
         <!-- Dislike Button -->
         <button
+          [disabled]="blog.dislikedBy.indexOf(username) > -1"
           type="button"
           name="button"
           class="btn btn-sm btn-warning"
           *ngIf="username !== blog.createdBy"
+          (click)="dislikeBlog(blog._id)"
         >
           <span class="glyphicon glyphicon-thumbs-down">&nbsp;</span>Dislikes:
-          15
+          {{ blog.dislikes }}
         </button>
         <!-- Dropdown Menu Items -->
       </div>

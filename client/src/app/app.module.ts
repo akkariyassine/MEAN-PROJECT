@@ -21,6 +21,7 @@ import { BlogComponent } from "./components/blog/blog.component";
 import { BlogService } from "../app/services/blog.service";
 import { EditBlogComponent } from "./components/blog/edit-blog/edit-blog.component";
 import { DeleteBlogComponent } from './components/blog/delete-blog/delete-blog.component';
+import { PublicProfileComponent } from './components/public-profile/public-profile.component';
 export function tokenGetter() {
   return localStorage.getItem("token");
 }
@@ -36,7 +37,8 @@ export function tokenGetter() {
     ProfileComponent,
     BlogComponent,
     EditBlogComponent,
-    DeleteBlogComponent
+    DeleteBlogComponent,
+    PublicProfileComponent
   ],
   imports: [
     FormsModule,

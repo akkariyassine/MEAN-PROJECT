@@ -27,6 +27,7 @@ export class AuthService {
   // Function to get token from client local storage
   loadToken() {
     this.authToken = localStorage.getItem("token"); // Get token and asssign to variable to be used elsewhere
+    console.log(this.authToken);
   }
 
   // Function to register user accounts

@@ -15,6 +15,8 @@ export class ProfileComponent implements OnInit {
   ngOnInit() {
     // Once component loads, get user's data to display on profile
     this.authService.getProfile().subscribe(profile => {
+      console.log(profile);
+
       this.username = profile.user.username; // Set username
       this.email = profile.user.email; // Set e-mail
     });

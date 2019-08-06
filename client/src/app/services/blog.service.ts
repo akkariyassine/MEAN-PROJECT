@@ -13,6 +13,8 @@ export class BlogService {
   createAuthenticationHeaders() {
     this.authService.loadToken(); // Get token so it can be attached to headers
     // Headers configuration options
+    console.log(this.authService.authToken);
+
     this.options = new RequestOptions({
       headers: new Headers({
         "Content-Type": "application/json", // Format set to JSON
@@ -75,6 +77,19 @@ export class BlogService {
     const blogData = { id: id };
     return this.http
       .put(this.domain + "/blog/dislikeBlog/", blogData, this.options)
+      .map(res => res.json());
+  }
+
+  // Function to post a comment on a blog post
+  postComment(id, comment) {
+    this.createAuthenticationHeaders(); // Create headers
+    // Create blogData to pass to backend
+    const blogData = {
+      id: id,
+      comment: comment
+    };
+    return this.http
+      .post(this.domain + "/blog/comment", blogData, this.options)
       .map(res => res.json());
   }
 }

@@ -9,7 +9,7 @@ import { HttpModule } from "@angular/http";
 import { HomeComponent } from "./components/home/home.component";
 import { DashboardComponent } from "./components/dashboard/dashboard.component";
 import { RegisterComponent } from "./components/register/register.component";
-import { ReactiveFormsModule } from "@angular/forms";
+import { ReactiveFormsModule, FormsModule } from "@angular/forms";
 import { AuthService } from "./services/auth.service.service";
 import { LoginComponent } from "./components/login/login.component";
 import { FlashMessagesModule } from "angular2-flash-messages";
@@ -19,6 +19,7 @@ import { AuthGuard } from "./guards/auth.guard";
 import { NotAuthGuard } from "./guards/notAuth.guard";
 import { BlogComponent } from "./components/blog/blog.component";
 import { BlogService } from "../app/services/blog.service";
+import { EditBlogComponent } from "./components/blog/edit-blog/edit-blog.component";
 export function tokenGetter() {
   return localStorage.getItem("token");
 }
@@ -32,9 +33,11 @@ export function tokenGetter() {
     RegisterComponent,
     LoginComponent,
     ProfileComponent,
-    BlogComponent
+    BlogComponent,
+    EditBlogComponent
   ],
   imports: [
+    FormsModule,
     BrowserModule,
     HttpModule,
     AppRoutingModule,
